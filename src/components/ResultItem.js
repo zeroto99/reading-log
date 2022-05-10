@@ -1,14 +1,19 @@
-const ResultItem = ({ result }) => {
-  console.log(result);
+import { useState } from 'react';
+import styled from 'styled-components';
+
+
+const ResultItem = ({ result, data, setData, addData }) => {
   return (
     <>
-      <h1>{result.length}개의 결과가 있습니다.</h1>
       {result.map((it) => (
-        <ul>
-          <li><img src={it.thumbnail} alt='책 표지 이미지'/></li>
-          <li>{it.title}</li>
-          <li>{it.author}</li>
-        </ul>
+        <li key={it.key}>
+          <ul className="item">
+            <li><img className="thumbnail" src={it.thumbnail} alt='책 표지 이미지'/></li>
+            <li className="title">{it.title}</li>
+            <li className="author">{it.author}</li>
+            <li><button onClick={() => addData(it.key, it.thumbnail, it.title, it.author)}>선택</button></li>
+          </ul>
+        </li>
       ))}
     </>
   )
