@@ -26,10 +26,12 @@ const StyledModal = styled.div`
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 `;
 
-const Modal = ({ modal, setModal, data, setData, addData }) => {
+const Modal = ({ modal, setModal, data, setData }) => {
   const outside = useRef();
   const [keyword, setKeyword] = useState('');
   const [result, setResult] = useState([]);
+  const [date, setDate] = useState('');
+  const [item, setItem] = useState([]);
 
   const kakao = axios.create({
     baseURL: 'https://dapi.kakao.com',
@@ -64,6 +66,23 @@ const Modal = ({ modal, setModal, data, setData, addData }) => {
     }
   }
 
+  const getherData = (key, thumbnail, title, author) => {
+    const newItem = {
+      key: key,
+      thumbnail: thumbnail, 
+      title: title, 
+      author: author,
+      date: date
+    }
+    setItem(newItem);
+    console.log(item);
+  }
+
+  const addData = () => {
+    setData([item, ...data]);
+    setModal(false);
+  }
+
   return (
     <>
       <StyledModalBg
@@ -73,16 +92,21 @@ const Modal = ({ modal, setModal, data, setData, addData }) => {
         }} 
       >
         <StyledModal>
-          <input type="date" />
+          <input 
+            type="date" 
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
           <input
             name="query"
             value={keyword} 
             onChange={(e) => setKeyword(e.target.value)}
             type="text" 
+            placeholder="도서 제목을 입력해주세요."
           />
           <button onClick={getData}>검색</button>
-          <ResultList result={result} data={data} setData={setData} addData={addData}/>
-          <button>추가하기</button>
+          <ResultList result={result} data={data} setData={setData} getherData={getherData}/>
+          <button onClick={addData}>추가하기</button>
           <button onClick={ () => setModal(false) }>취소하기</button>
         </StyledModal>
       </StyledModalBg>

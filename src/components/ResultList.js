@@ -7,10 +7,10 @@ const StyledList = styled.ul`
   padding: 20px;
 `;
 
-const ResultList = ({ result, data, setData, addData }) => {
+const ResultList = ({ result, data, setData, getherData }) => {
   return (
     <StyledList>
-      <ResultItem result={result} data={data} setData={setData} addData={addData} />
+      <ResultItem result={result} data={data} setData={setData} getherData={getherData} />
     </StyledList>
   )
 }

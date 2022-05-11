@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Modal from "./Modal";
 import styled from 'styled-components';
 
@@ -16,17 +16,9 @@ const Home = () => {
   const [data, setData] = useState([]);
   const [modal, setModal] = useState(false);
 
-  const addData = (key, thumbnail, title, author) => {
-    const newData = {
-      key: key,
-      thumbnail: thumbnail, 
-      title: title, 
-      author: author
-    }
-    setData([newData, ...data]);
-    console.log(data);
-    setModal(false);
-  }
+  useEffect(() => {
+    localStorage.setItem('item', JSON.stringify(data));
+  }, [data]);
   
   return (
     <>
@@ -36,13 +28,14 @@ const Home = () => {
             <img src={it.thumbnail} alt="책 표지 이미지" />
             <p>{it.title}</p>
             <p>{it.author}</p>
+            <p>완독일: {it.date}</p>
           </div>
         ))}
       </StyledList>
       <button onClick={ () => setModal(true) }>클릭하면 모달이 열림</button>
       {
         modal === true
-        ? <Modal modal={modal} setModal={setModal} data={data} setData={setData} addData={addData} />
+        ? <Modal modal={modal} setModal={setModal} data={data} setData={setData} />
         : null
       }
     </>
