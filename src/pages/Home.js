@@ -9,7 +9,9 @@ const StyledList = styled.section`
   transform: translate(-50%, -50%);
   width: 960px;
   height: 600px;
+  padding: 20px;
   background: #efefef;
+  overflow-y: scroll;
 `;
 
 const Home = () => {
@@ -21,6 +23,12 @@ const Home = () => {
   useEffect(() => {
     localStorage.setItem('item', JSON.stringify(data));
   }, [data]);
+
+  const onRemove = (targetKey) => {
+    console.log('타겟이제거됨');
+    const newData = data.filter((it) => it.key !== targetKey);
+    setData(newData);
+  }
   
   return (
     <>
@@ -31,6 +39,13 @@ const Home = () => {
             <p>{it.title}</p>
             <p>{it.author}</p>
             <p>완독일: {it.date}</p>
+            <button onClick={() => {
+              console.log(it.key);
+              if(window.confirm(`${it.title}를 삭제하시겠습니까?`)) {
+                onRemove(it.key);
+              }
+            }}
+            >삭제하기</button>
           </div>
         ))}
       </StyledList>
