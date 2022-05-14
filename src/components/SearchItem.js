@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 
-const ResultItem = ({ result, data, setData, getherData }) => {
+const SearchItem = ({ result, data, setData, getherData }) => {
   return (
     <>
       {result.map((it) => (
@@ -19,4 +19,4 @@ const ResultItem = ({ result, data, setData, getherData }) => {
   )
 }
 
-export default ResultItem;
+export default SearchItem;

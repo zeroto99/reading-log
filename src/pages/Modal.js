@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import axios from 'axios';
-import ResultList from "../components/ResultList";
+import SearchList from "../components/SearchList";
 import styled from 'styled-components';
 
 const API_KEY = process.env.REACT_APP_KAKAO_API_KEY;
@@ -105,7 +105,7 @@ const Modal = ({ modal, setModal, data, setData }) => {
             placeholder="도서 제목을 입력해주세요."
           />
           <button onClick={getData}>검색</button>
-          <ResultList result={result} data={data} setData={setData} getherData={getherData}/>
+          <SearchList result={result} data={data} setData={setData} getherData={getherData}/>
           <button onClick={addData}>추가하기</button>
           <button onClick={ () => setModal(false) }>취소하기</button>
         </StyledModal>
