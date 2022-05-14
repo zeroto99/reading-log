@@ -13,7 +13,9 @@ const StyledList = styled.section`
 `;
 
 const Home = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(
+    () => JSON.parse(localStorage.getItem("item")) || []
+  );
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
@@ -41,6 +43,5 @@ const Home = () => {
     </>
   )
 }
-
 
 export default Home;
