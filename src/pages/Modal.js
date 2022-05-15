@@ -30,7 +30,7 @@ const Modal = ({ modal, setModal, data, setData }) => {
   const outside = useRef();
   const [keyword, setKeyword] = useState('');
   const [result, setResult] = useState([]);
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [item, setItem] = useState([]);
 
   const kakao = axios.create({
