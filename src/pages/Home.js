@@ -3,6 +3,10 @@ import Modal from "./Modal";
 import styled from 'styled-components';
 
 const StyledList = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -14,11 +18,29 @@ const StyledList = styled.section`
   overflow-y: scroll;
 `;
 
+const sortOptionList = [
+  {value: 'latest', name: '최신순'},
+  {value: 'oldest', name: '오래된 순'},
+]
+
+const ControlMenu = ({value, onChange, optionList}) => {
+  return (
+    <select value={value} onChange={(e) => onChange(e.target.value)}>
+      {optionList.map((it, idx) => (
+        <option key={idx} value={it.value}>
+          {it.name}
+        </option>
+      ))}
+    </select>
+  )
+}
+
 const Home = () => {
   const [data, setData] = useState(
     () => JSON.parse(localStorage.getItem("item")) || []
   );
   const [modal, setModal] = useState(false);
+  const [sortType, setSortType] = useState('latest');
 
   useEffect(() => {
     localStorage.setItem('item', JSON.stringify(data));
@@ -29,11 +51,29 @@ const Home = () => {
     const newData = data.filter((it) => it.key !== targetKey);
     setData(newData);
   }
+
+  const getProcessedList = () => {
+    const compare = (a,b) => {
+      if(sortType === 'latest') {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      } else {
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
+      }
+    }
+    const copyList = JSON.parse(JSON.stringify(data));
+    const sortedList = copyList.sort(compare);
+    return sortedList;
+  }
   
   return (
     <>
+      <ControlMenu 
+        value={sortType}
+        onChange={setSortType}
+        optionList={sortOptionList}
+      />
       <StyledList>
-        {data.map((it) => (
+        {getProcessedList().map((it) => (
           <div key={it.key}>
             <img src={it.thumbnail} alt="책 표지 이미지" />
             <p>{it.title}</p>
