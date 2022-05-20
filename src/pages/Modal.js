@@ -21,9 +21,28 @@ const StyledModal = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 800px;
-  height: 500px;
+  padding: 20px;
   background: #fff;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+`;
+
+const StyledForm = styled.form`
+  display: flex;
+  margin-bottom: 30px;
+  .date {
+
+  }
+  .search-inp {
+    flex: 1;
+    margin: 0 10px;
+    outline: none;
+  }
+`;
+
+const StyledBtn = styled.button`
+  padding: 4px 15px;
+  border-radius: 5px;
+  border: 1px solid;
 `;
 
 const Modal = ({ modal, setModal, data, setData }) => {
@@ -32,6 +51,7 @@ const Modal = ({ modal, setModal, data, setData }) => {
   const [result, setResult] = useState([]);
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [item, setItem] = useState([]);
+  const [search, setSearch] = useState(false);
 
   const kakao = axios.create({
     baseURL: 'https://dapi.kakao.com',
@@ -44,7 +64,8 @@ const Modal = ({ modal, setModal, data, setData }) => {
     return kakao.get('/v3/search/book', {params})
   }
 
-  const getData = async() => {
+  const getData = async(e) => {
+    e.preventDefault();
     try {
       const params = {
         query: keyword,
@@ -60,6 +81,7 @@ const Modal = ({ modal, setModal, data, setData }) => {
           key: it.isbn
         }
       });
+      setSearch(true);
       setResult(requiredData);
     } catch(err) {
       console.log(`err: ${err}`)
@@ -96,23 +118,29 @@ const Modal = ({ modal, setModal, data, setData }) => {
         }} 
       >
         <StyledModal>
-          <input 
-            type="date" 
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
-          <input
-            name="query"
-            value={keyword} 
-            onChange={(e) => setKeyword(e.target.value)}
-            type="text" 
-            placeholder="도서 제목을 입력해주세요."
-            autoComplete="off"
-          />
-          <button onClick={getData}>검색</button>
-          <SearchList result={result} data={data} setData={setData} getherData={getherData}/>
-          <button onClick={addData}>추가하기</button>
-          <button onClick={ () => setModal(false) }>취소하기</button>
+          <StyledForm onSubmit={getData}>
+            <input
+              className="search-inp"
+              name="query"
+              value={keyword} 
+              onChange={(e) => setKeyword(e.target.value)}
+              type="text" 
+              placeholder="도서 제목을 입력해주세요."
+              autoComplete="off"
+            />
+            <StyledBtn type="submit">검색</StyledBtn>
+            <label htmlFor="date">완독일: </label>
+            <input 
+              className="date"
+              id="date"
+              type="date" 
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            />
+          </StyledForm>
+          {search && <SearchList result={result} data={data} setData={setData} getherData={getherData}/>}
+          {search && <StyledBtn onClick={addData}>추가하기</StyledBtn>}
+          {search && <StyledBtn onClick={ () => setModal(false) }>취소하기</StyledBtn>}
         </StyledModal>
       </StyledModalBg>
     </>
