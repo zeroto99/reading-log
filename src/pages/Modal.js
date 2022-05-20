@@ -138,7 +138,7 @@ const Modal = ({ modal, setModal, data, setData }) => {
               onChange={(e) => setDate(e.target.value)}
             />
           </StyledForm>
-          {search && <SearchList result={result} data={data} setData={setData} getherData={getherData}/>}
+          {search && <SearchList result={result} data={data} setData={setData} getherData={getherData} />}
           {search && <StyledBtn onClick={addData}>추가하기</StyledBtn>}
           {search && <StyledBtn onClick={ () => setModal(false) }>취소하기</StyledBtn>}
         </StyledModal>
