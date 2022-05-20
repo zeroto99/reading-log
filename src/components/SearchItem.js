@@ -3,6 +3,14 @@ import styled from 'styled-components';
 
 const StyledLi = styled.li`
   padding: 20px;
+
+  &:hover {
+    background: #f4f4f4;
+  }
+  
+  &:focus-within {
+    background: aliceblue;
+  }
 `;
 
 const StyledUl = styled.ul`
@@ -10,6 +18,7 @@ const StyledUl = styled.ul`
   align-items: center;
   gap: 5%;
   justify-content: space-between;
+
 
   .thumbnail {
     width: 120px;
@@ -35,13 +44,13 @@ const StyledUl = styled.ul`
     border: 1px solid;
     padding: 4px 10px;
   }
-  .select-btn:focus {
-    color: blue;
-  }
 `;
 
 
 const SearchItem = ({ result, getherData }) => {
+  const [active, setActive] = useState(false);
+
+
   return (
     <>
       {result.map((it) => (
