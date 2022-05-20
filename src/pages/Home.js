@@ -2,23 +2,31 @@ import { useRef, useState, useEffect } from "react";
 import Modal from "./Modal";
 import styled from 'styled-components';
 
-const StyledMain = styled.main`
-  width: 960px;
+const StyledAside = styled.aside`
+  width: 30%;
+  height: 100%;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 0;
+  background: #fdfde8;
+`;
+
+const StyledMain = styled.main`
+  width: 70%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow-y: scroll;
 `;
 
 const StyledList = styled.section`
-  height: 700px;
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-start;
   align-items: center;
   gap: 5%;
-  padding: 20px;
-  overflow-y: scroll;
+  padding: 60px;
 `;
 
 const StyledItem = styled.article`
@@ -60,12 +68,9 @@ const StyledItem = styled.article`
 `;
 
 export const StyledBtn = styled.button`
-  padding: 2px 6px;
-  margin-top: 10px;
-  margin-left: ${props => props.remove ? '195px' : '15px'};
+  padding: 5px 10px;
   border: 1px solid #767676;
   border-radius: 10px;
-  line-height: 20px;
   font-size: 12px;
 `;
 
@@ -118,13 +123,15 @@ const Home = () => {
   
   return (
     <>
+      <StyledAside>
+        <StyledBtn onClick={ () => setModal(true) }>추가하기</StyledBtn>
+      </StyledAside>
       <StyledMain>
         <ControlMenu 
           value={sortType}
           onChange={setSortType}
           optionList={sortOptionList}
         />
-        <StyledBtn onClick={ () => setModal(true) }>추가하기</StyledBtn>
         <StyledList>
           {getProcessedList().map((it) => (
             <StyledItem key={it.key}>
