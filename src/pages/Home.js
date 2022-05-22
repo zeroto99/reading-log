@@ -8,6 +8,17 @@ const StyledAside = styled.aside`
   position: absolute;
   left: 0;
   background: #fdfde8;
+
+  .controlMenu {
+    padding: 4px 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    background: #5a695a;
+    color: #fffdeb;
+    text-align: center;
+  }
 `;
 
 const StyledMain = styled.main`
@@ -16,7 +27,7 @@ const StyledMain = styled.main`
   position: absolute;
   top: 0;
   right: 0;
-  overflow-y: scroll;
+  overflow: hidden;
 `;
 
 const StyledList = styled.section`
@@ -27,6 +38,7 @@ const StyledList = styled.section`
   align-items: center;
   gap: 5%;
   padding: 60px;
+  overflow-y: scroll;
 `;
 
 const StyledItem = styled.article`
@@ -69,9 +81,12 @@ const StyledItem = styled.article`
 
 export const StyledBtn = styled.button`
   padding: 5px 10px;
-  border: 1px solid #767676;
+  border: none;
   border-radius: 10px;
   font-size: 12px;
+  font-weight: 700;
+  background: #5a695a;
+  color: #fffdeb;
 `;
 
 const sortOptionList = [
@@ -81,7 +96,7 @@ const sortOptionList = [
 
 const ControlMenu = ({value, onChange, optionList}) => {
   return (
-    <select value={value} onChange={(e) => onChange(e.target.value)}>
+    <select className='controlMenu' value={value} onChange={(e) => onChange(e.target.value)}>
       {optionList.map((it, idx) => (
         <option key={idx} value={it.value}>
           {it.name}
@@ -125,13 +140,13 @@ const Home = () => {
     <>
       <StyledAside>
         <StyledBtn onClick={ () => setModal(true) }>추가하기</StyledBtn>
-      </StyledAside>
-      <StyledMain>
         <ControlMenu 
           value={sortType}
           onChange={setSortType}
           optionList={sortOptionList}
         />
+      </StyledAside>
+      <StyledMain>
         <StyledList>
           {getProcessedList().map((it) => (
             <StyledItem key={it.key}>
