@@ -3,13 +3,9 @@ import styled from 'styled-components';
 
 const StyledLi = styled.li`
   padding: 20px;
-
-  &:hover {
-    background: #f4f4f4;
-  }
   
   &:focus-within {
-    background: aliceblue;
+    background: #fffdeb;
   }
 `;
 
@@ -43,6 +39,10 @@ const StyledUl = styled.ul`
     width: 100%;
     border: 1px solid;
     padding: 4px 10px;
+  }
+  .select-btn:focus {
+    color: #5a695a;
+    font-weight: 700;
   }
 `;
 

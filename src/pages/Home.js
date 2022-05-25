@@ -3,21 +3,17 @@ import Modal from "./Modal";
 import styled from 'styled-components';
 
 const StyledAside = styled.aside`
+  display: flex;
+  flex-direction: column;
   width: 30%;
   height: 100%;
   position: absolute;
   left: 0;
   background: #fdfde8;
 
-  .controlMenu {
-    padding: 4px 10px;
-    border: none;
-    border-radius: 10px;
-    font-size: 12px;
-    font-weight: 700;
-    background: #5a695a;
-    color: #fffdeb;
-    text-align: center;
+  h1 {
+    color: #5a695a;
+    font-size: 80px;
   }
 `;
 
@@ -28,6 +24,21 @@ const StyledMain = styled.main`
   top: 0;
   right: 0;
   overflow: hidden;
+
+  .controlMenu {
+    position: absolute;
+    top: 10px;
+    right: 60px;
+    width: 160px;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    background: #5a695a;
+    color: #fffdeb;
+    text-align: center;
+  }
 `;
 
 const StyledList = styled.section`
@@ -39,6 +50,11 @@ const StyledList = styled.section`
   gap: 5%;
   padding: 60px;
   overflow-y: scroll;
+
+  h1 {
+    margin: 0 auto;
+    color: #4e574e;
+  }
 `;
 
 const StyledItem = styled.article`
@@ -80,10 +96,15 @@ const StyledItem = styled.article`
 `;
 
 export const StyledBtn = styled.button`
-  padding: 5px 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 160px;
+  padding: 10px;
   border: none;
-  border-radius: 10px;
-  font-size: 12px;
+  border-radius: 20px;
+  font-size: 14px;
   font-weight: 700;
   background: #5a695a;
   color: #fffdeb;
@@ -139,32 +160,36 @@ const Home = () => {
   return (
     <>
       <StyledAside>
+        <h1>READING LOG</h1>
         <StyledBtn onClick={ () => setModal(true) }>추가하기</StyledBtn>
+      </StyledAside>
+      <StyledMain>
         <ControlMenu 
           value={sortType}
           onChange={setSortType}
           optionList={sortOptionList}
         />
-      </StyledAside>
-      <StyledMain>
         <StyledList>
-          {getProcessedList().map((it) => (
-            <StyledItem key={it.key}>
-              <img className="thumbnail" src={it.thumbnail} alt="책 표지 이미지" />
-              <p className="title">{it.title}</p>
-              <p className="author">{it.author}</p>
-              <p className="date">완독일: {it.date}</p>
-              <button
-                className="remove-btn"
-                onClick={() => {
-                  console.log(it.key);
-                  if(window.confirm(`${it.title}를(을) 내 서재에서 삭제하시겠습니까?`)) {
-                    onRemove(it.key);
-                  }
-                }}
-              >삭제하기</button>
-            </StyledItem>
-          ))}
+          {data.length >= 1 ? 
+            getProcessedList().map((it) => (
+              <StyledItem key={it.key}>
+                <img className="thumbnail" src={it.thumbnail} alt="책 표지 이미지" />
+                <p className="title">{it.title}</p>
+                <p className="author">{it.author}</p>
+                <p className="date">완독일: {it.date}</p>
+                <button
+                  className="remove-btn"
+                  onClick={() => {
+                    console.log(it.key);
+                    if(window.confirm(`${it.title}를(을) 내 서재에서 삭제하시겠습니까?`)) {
+                      onRemove(it.key);
+                    }
+                  }}
+                >삭제하기</button>
+              </StyledItem>
+            )) 
+            : <h1>로그를 추가해주세요!</h1>
+          }
         </StyledList>
       </StyledMain>
       {

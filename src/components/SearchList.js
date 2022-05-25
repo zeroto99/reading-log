@@ -5,7 +5,8 @@ const StyledList = styled.ul`
   height: 400px;
   overflow-y: scroll;
   padding: 20px;
-  margin-bottom: 30px;
+  margin: 30px 0;
+  background: #fffdeb47;
 `;
 
 const SearchList = ({ result, data, setData, getherData }) => {
