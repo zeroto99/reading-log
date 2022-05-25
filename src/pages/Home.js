@@ -1,6 +1,10 @@
 import { useRef, useState, useEffect } from "react";
 import Modal from "./Modal";
 import styled from 'styled-components';
+import shape1 from '../assets/shape1.png';
+import shape2 from '../assets/shape2.png';
+import shape3 from '../assets/shape3.png';
+
 
 const StyledAside = styled.aside`
   display: flex;
@@ -10,10 +14,49 @@ const StyledAside = styled.aside`
   position: absolute;
   left: 0;
   background: #fdfde8;
+  overflow: hidden;
 
   h1 {
+    margin: 80px auto;
     color: #5a695a;
     font-size: 80px;
+    z-index: 1;
+  }
+
+  .img-wrapper .shape1 {
+    position: absolute;
+    top: 27px;
+    right: 9px;
+    width: 60px;
+  }
+  .img-wrapper .shape2 {
+    position: absolute;
+    bottom: 184px;
+    left: 52px;
+    width: 143px;
+  }
+  .img-wrapper .shape3 {
+    position: absolute;
+    bottom: 316px;
+    left: 41px;
+    width: 30px;
+  }
+  .img-wrapper .shape4 {
+    position: absolute;
+    bottom: 85px;
+    right: 41px;
+    width: 30px;
+  }
+  .img-wrapper .blur-shape {
+    width: 490px;
+    height: 300px;
+    background-color: #8ac1bb;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.75;
+    position: absolute;
+    bottom: -100px;
+    left: -129px;
   }
 `;
 
@@ -33,11 +76,12 @@ const StyledMain = styled.main`
     padding: 10px;
     border: none;
     border-radius: 20px;
+    outline: none;
     font-size: 12px;
     font-weight: 700;
     background: #5a695a;
     color: #fffdeb;
-    text-align: center;
+    cursor: pointer;
   }
 `;
 
@@ -162,13 +206,23 @@ const Home = () => {
       <StyledAside>
         <h1>READING LOG</h1>
         <StyledBtn onClick={ () => setModal(true) }>추가하기</StyledBtn>
+        <div className="img-wrapper">
+          <img src={shape1} alt="도형 이미지" className="shape1" />
+          <img src={shape2} alt="도형 이미지" className="shape2" />
+          <img src={shape3} alt="도형 이미지" className="shape3" />
+          <img src={shape3} alt="도형 이미지" className="shape4" />
+          <div className="blur-shape"></div>
+        </div>
       </StyledAside>
       <StyledMain>
-        <ControlMenu 
-          value={sortType}
-          onChange={setSortType}
-          optionList={sortOptionList}
-        />
+        { data.length >= 1 ? 
+          <ControlMenu 
+            value={sortType}
+            onChange={setSortType}
+            optionList={sortOptionList}
+          />
+          : null
+        }
         <StyledList>
           {data.length >= 1 ? 
             getProcessedList().map((it) => (
@@ -181,7 +235,7 @@ const Home = () => {
                   className="remove-btn"
                   onClick={() => {
                     console.log(it.key);
-                    if(window.confirm(`${it.title}를(을) 내 서재에서 삭제하시겠습니까?`)) {
+                    if(window.confirm(`"${it.title}"를 로그에서 삭제하시겠습니까?`)) {
                       onRemove(it.key);
                     }
                   }}
