@@ -118,7 +118,6 @@ const Modal = ({ modal, setModal, data, setData }) => {
     if(data.map(it => it.key.includes(key)).indexOf(true) !== -1) {
       window.confirm(`로그에 이미 등록된 도서입니다.`);
     } else {
-      console.log('새로 등록 가능');
       const newItem = {
         key: key,
         thumbnail: thumbnail, 
@@ -131,8 +130,12 @@ const Modal = ({ modal, setModal, data, setData }) => {
   }
 
   const addData = () => {
-    setData([item, ...data]);
-    setModal(false);
+    if(item.length == 0) {
+      alert('도서를 선택하세요.');
+    } else {
+      setData([item, ...data]);
+      setModal(false);
+    } 
   }
 
   return (
@@ -171,7 +174,9 @@ const Modal = ({ modal, setModal, data, setData }) => {
               </input> 
             </StyledForm>
           }
-          {search && <SearchList result={result} data={data} setData={setData} getherData={getherData} />}
+          {
+            search && <SearchList result={result} data={data} setData={setData} getherData={getherData} />
+          }
           {
             search && <div className="btn-wrapper">
               <StyledBtn onClick={addData}>추가하기</StyledBtn>
