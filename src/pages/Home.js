@@ -20,7 +20,7 @@ const StyledAside = styled.aside`
     margin: 80px auto;
     color: #5a695a;
     font-size: 80px;
-    z-index: 1;
+    z-index: 10;
   }
 
   .img-wrapper .shape1 {

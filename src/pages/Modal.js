@@ -13,6 +13,7 @@ const StyledModalBg = styled.div`
   height: 100%;
   background-color: rgba(255,255,255,0.15);
   backdrop-filter: blur(5px);
+  z-index: 20;
 `;
 
 const StyledModal = styled.div`
