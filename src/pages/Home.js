@@ -183,7 +183,6 @@ const Home = () => {
   }, [data]);
 
   const onRemove = (targetKey) => {
-    console.log('타겟이제거됨');
     const newData = data.filter((it) => it.key !== targetKey);
     setData(newData);
   }
@@ -234,7 +233,6 @@ const Home = () => {
                 <button
                   className="remove-btn"
                   onClick={() => {
-                    console.log(it.key);
                     if(window.confirm(`"${it.title}"를 로그에서 삭제하시겠습니까?`)) {
                       onRemove(it.key);
                     }

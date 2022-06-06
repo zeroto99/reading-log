@@ -50,7 +50,6 @@ const StyledUl = styled.ul`
 const SearchItem = ({ result, getherData }) => {
   const [active, setActive] = useState(false);
 
-
   return (
     <>
       {result.map((it) => (
