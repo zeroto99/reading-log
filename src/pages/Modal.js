@@ -116,7 +116,7 @@ const Modal = ({ modal, setModal, data, setData }) => {
 
   const getherData = (key, thumbnail, title, author) => {
     if(data.map(it => it.key.includes(key)).indexOf(true) !== -1) {
-      window.confirm(`내서재에 이미 등록된 도서입니다.`);
+      window.confirm(`로그에 이미 등록된 도서입니다.`);
     } else {
       console.log('새로 등록 가능');
       const newItem = {
