@@ -1,8 +1,14 @@
 # Reading Log
 
+## URL
+
+https://zeroto99.github.io/READING_LOG/
+<br><br>
+
 ## 소개
 
-카카오 책 검색 API를 활용하여 완독한 도서를 기록할 수 있는 웹페이지입니다.
+카카오 책 검색 API를 활용한 독서 기록 웹페이지입니다.
+책 제목을 검색하여 로그에 추가할 수 있습니다.
 <br><br>
 
 ## 개발 기간
