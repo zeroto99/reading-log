@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 
 const StyledLi = styled.li`
@@ -48,7 +47,6 @@ const StyledUl = styled.ul`
 
 
 const SearchItem = ({ result, getherData }) => {
-  const [active, setActive] = useState(false);
 
   return (
     <>

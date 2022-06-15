@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import axios from 'axios';
 import SearchList from "../components/SearchList";
 import styled from 'styled-components';

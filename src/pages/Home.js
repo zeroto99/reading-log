@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Modal from "./Modal";
 import styled from 'styled-components';
 import shape1 from '../assets/shape1.png';
