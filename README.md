@@ -2,7 +2,7 @@
 
 ## URL
 
-https://zeroto99.github.io/READING_LOG/
+https://zeroto99.github.io/reading-log/
 <br><br>
 
 ## 소개
@@ -21,7 +21,16 @@ https://zeroto99.github.io/READING_LOG/
 <br><br>
 
 ## 기능
+### 로그에 추가하기 
+<img src='https://user-images.githubusercontent.com/89337955/172300456-e12e01dd-112f-4565-b04c-39c1b4acfd78.gif'/>
+<hr>
 
+### 로그에서 삭제하기
+<img src='https://user-images.githubusercontent.com/89337955/172300344-95572a6e-ae5f-48fe-9dfe-1db25f629da7.gif'/>
+<hr>
+
+### 최신순, 오래된 순 정렬하기
+<img src='https://user-images.githubusercontent.com/89337955/172300367-b77370c1-15ea-429e-bc36-9f54dc56b9c0.gif'/>
 <br><br>
 
 ## 개발하며 겪은 이슈
