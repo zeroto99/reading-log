@@ -2,7 +2,7 @@
 
 ## URL
 
-https://zeroto99.github.io/READING_LOG/
+https://zeroto99.github.io/reading-log/
 <br><br>
 
 ## 소개
