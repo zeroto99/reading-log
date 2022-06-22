@@ -13,7 +13,7 @@ https://zeroto99.github.io/reading-log/
 
 ## 개발 기간
 
-2022.05 ~ 개선 중
+2022.05 ~ 리팩토링 중
 <br><br>
 
 ## UI
@@ -33,11 +33,7 @@ https://zeroto99.github.io/reading-log/
 <img src='https://user-images.githubusercontent.com/89337955/172300367-b77370c1-15ea-429e-bc36-9f54dc56b9c0.gif'/>
 <br><br>
 
-## 개발하며 겪은 이슈
-
-<br><br>
-
-## 개선 사항
+## 개선할 사항
 
 - 검색 결과 무한 스크롤 기능 추가
 - 검색 결과 표지 이미지가 없는 경우 대체 이미지 보여주기
